@@ -1,27 +1,35 @@
 <template>
   <div id="app">
-    <HelloWorld />
+    <h3>NoteMark extension</h3>
+    <hr />
+   <ToggleButton /> 
   </div>
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld.vue";
+import ToggleButton from "../components/ToggleButton.vue";
+import { getMessage } from "../utility/getMessage.js"
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    ToggleButton,
   },
+  mounted: function () {
+    getMessage();
+
+  }
 };
 </script>
 
 <style>
 #app {
+  width: 20rem;
+  height: 15rem;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  padding: 1rem 2rem;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

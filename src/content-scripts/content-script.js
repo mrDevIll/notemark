@@ -1,10 +1,6 @@
 
-var enableExtension;
+var enableExtension = true;
 
-// chrome.storage.onChanged.addEventListener(function (changes, namespace) {
-//     consoel.log(changes[enableExtension])
-
-// })
 
 startApp(enableExtension);
 
@@ -22,8 +18,8 @@ function startApp(enable) {
                 const data = textSelected.toString();
                 let evt = e;
                 giveFeedback(e);
-                chrome.runtime.sendMessage({ title, data, website });
-                console.log("msg sent", { title, data, website });
+                chrome.runtime.sendMessage({ "message": { title, website, data } });
+
             }
             else
                 false;
