@@ -1,6 +1,15 @@
+// var data;
+// chrome.runtime.onMessage.addListener(function ({ message }, sender, response) {
+//     data = message;
+// })
 
-export function getMessage() {
-    chrome.runtime.onMessage.addListener(function (msg, sender, response) {
-        console.log(msg.message);
-    })
-}
+// var newCopy = new CustomEvent("copiedData", {
+
+// })
+
+// export function getMessage() {
+//     return data ? data : "empty"
+// }
+
+
+

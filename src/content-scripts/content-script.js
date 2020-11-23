@@ -2,6 +2,7 @@
 var enableExtension = true;
 
 
+
 startApp(enableExtension);
 
 
@@ -18,7 +19,7 @@ function startApp(enable) {
                 const data = textSelected.toString();
                 let evt = e;
                 giveFeedback(e);
-                chrome.runtime.sendMessage({ "message": { title, website, data } });
+                chrome.runtime.sendMessage({ "textMessage": { title, website, data } });
 
             }
             else
@@ -62,3 +63,4 @@ function startApp(enable) {
     }
 
 }
+

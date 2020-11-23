@@ -1,25 +1,53 @@
 <template>
   <div id="app">
+ 
     <h3>NoteMark extension</h3>
     <hr />
    <ToggleButton /> 
+    <ul>
+      <li v-for="value in message">
+        {{value}} 
+      </li>
+    </ul>
+    
   </div>
 </template>
 
 <script>
 import ToggleButton from "../components/ToggleButton.vue";
-import { getMessage } from "../utility/getMessage.js"
+// import { getMessage } from "../utility/getMessage.js"
 
 export default {
   name: "App",
   components: {
     ToggleButton,
   },
-  mounted: function () {
-    getMessage();
+  data() {
+    return {
+      message: []
+    }
+  },
+  methods: {
 
+    updateMessage: function () {
+      let m = this.message;
+
+      chrome.runtime.onMessage.addListener(function ({ textMessage }, sender, response) {
+        if (textMessage) {
+          let title = textMessage.title
+          m.push(textMessage);// doesn't update the message
+
+        }
+      })
+
+    }
+  },
+  mounted() {
+    this.updateMessage()
   }
-};
+}
+
+
 </script>
 
 <style>
