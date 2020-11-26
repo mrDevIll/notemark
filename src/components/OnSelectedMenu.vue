@@ -1,9 +1,11 @@
 <template>
     <div class="menu-selected" v-show="note.show" v-bind:style="{top:note.top, left:note.left}">
        
-        <font-awesome-icon :icon="copyIcon" class="menu-selected-icon menu-selected-icon-copy" />
-        <font-awesome-icon :icon="plusCircle" class="menu-selected-icon menu-selected-icon-plus" />
-        <font-awesome-icon :icon="editIcon" class="menu-selected-icon menu-selected-icon-edit" />
+        <font-awesome-icon :icon="copyIcon" class="menu-selected-icon menu-selected-icon-copy" v-on:click="copyMessage" title="copy"/>
+        <font-awesome-icon :icon="plusCircle" class="menu-selected-icon menu-selected-icon-plus" title="add note"/>
+        <!-- <font-awesome-icon :icon="editIcon" class="menu-selected-icon menu-selected-icon-edit" /> -->
+
+       
     </div>
 
 </template>
@@ -20,49 +22,56 @@ export default {
             plusCircle: faPlusCircle,
             editIcon: faEdit,
             copyIcon: faCopy,
-            note: {show: false, left: 0, top: 0},
-            
+            note: { show: false, left: 0, top: 0, message: {} },
+
 
         }
     },
     components: {
         FontAwesomeIcon
     },
-    computed: {
-
+    methods: {
+        copyMessage() {
+            try {
+                navigator.clipboard.writeText(this.note.message.data);
+            } catch (e) {
+                console.log("error copying the data: " + e)
+            }
+        }
     },
 
-    mounted:function() {
+    mounted: function () {
         startApp(this.note)
     }
 
 
 }
 
-function startApp(note) {
-        const noteLocal = note;
-        let textSelected;
+function startApp(element) {
+    const el = element;
+    let textSelected;
 
-        document.body.addEventListener('mouseup', function (e) {
+    document.body.addEventListener('mouseup', function (e) {
 
-            textSelected = window.getSelection();
-            if (textSelected.toString().length > 0) {
-                let website = document.location.href;
-                let title = document.getElementsByTagName('title')[0].innerText;
-                const data = textSelected.toString();
-                let evt = e;
-                note.show = true;
-               // chrome.runtime.sendMessage({ "textMessage": { title, website, data } });
-                note.left= evt.pageX - 45 + "px";
-                note.top= evt.pageY - 35 +"px";
-            }
-            else
-                false;
+        textSelected = window.getSelection();
+        if (textSelected.toString().length > 0) {
+            let website = document.location.href;
+            let title = document.getElementsByTagName('title')[0].innerText;
+            const data = textSelected.toString();
+            let evt = e;
+            el.show = true;
+            el.message = { title, website, data }
+            // chrome.runtime.sendMessage({ "textMessage": { title, website, data } });
+            el.left = evt.pageX - 45 + "px";
+            el.top = evt.pageY - 35 + "px";
+        }
+        else
+            false;
 
-        }, false);
+    }, false);
 
-        
-    }
+
+}
 
 
 
@@ -73,18 +82,20 @@ function startApp(note) {
 .menu-selected {
   position: absolute;
 
-  
-  padding: 0.5rem;
-  background-color: gray;
+  padding: 0.4rem 0.8rem;
+  background-color: #111827;
   border-radius: 5%;
 
   z-index: 10000;
 }
 .menu-selected-icon {
-  margin-left: 0.3rem;
+  color: white;
+}
+.menu-selected-icon:first-child {
+  margin-right: 1rem;
 }
 .menu-selected-icon:hover {
-  color: blue;
+  color: #6ee7b7;
   transform: scale(1.3);
 }
 </style>
