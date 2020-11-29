@@ -15,5 +15,5 @@ function initExtension() {
     const vueDivContainer = document.createElement("div");
     vueDivContainer.id = "noteMarkDiv";
     bodyTag[0].insertBefore(vueDivContainer, bodyTag[0].firstChild);
-    console.log(bodyTag[0])
+
 }
