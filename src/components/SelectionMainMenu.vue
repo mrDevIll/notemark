@@ -1,14 +1,21 @@
 <template>
+<div>
     <div class="mini-menu-selected"  v-bind:style="{top:top, left:left}">
+    <span v-if="iselect">
+      <label for="node" name="node" >new note</label>
+        <input type="node" name="node" />
+    </span>
         <font-awesome-icon :icon="copyIcon" class="mini-menu-selected-icon mini-menu-selected-icon-copy" v-on:click="copyMessage" title="copy"/>
-        <font-awesome-icon :icon="plusCircle" class="mini-menu-selected-icon mini-menu-selected-icon-plus"  title="add to your notes"/> 
-        <!-- <font-awesome-icon :icon="editIcon" class="mini-menu-selected-icon mini-menu-selected-icon-edit" /> -->
-      {{note.id}}
+        <font-awesome-icon :icon="plusCircle" class="mini-menu-selected-icon mini-menu-selected-icon-plus" v-on:click="takeNote" title="add to your notes"/> 
+      
     </div>
+</div>
 </template>
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faPlusCircle, faEdit, faCopy } from '@fortawesome/free-solid-svg-icons';
+import insertMessage from '../utility/insertMessage.js'
+
 
 export default {
   name: "SelectionMainMenu",
@@ -16,44 +23,55 @@ export default {
   data: function () {
     return {
       plusCircle: faPlusCircle, copyIcon: faCopy,
+      iselect: false
 
 
     }
   },
+
   methods: {
     copyMessage() {
+
+
       try {
-        console.log(this.note)
         navigator.clipboard.writeText(this.note.data);
-        // this.note.show = false;
+        function n(x) { return function () { console.log(n) } }
+        chrome.storage.sync.get(['node'], function (result) {
+          n(result);
+          console.log(result)
+        })
+        this.$emit("menuOff");
       } catch (e) {
         console.log("error copying the data: " + e)
       }
     },
 
-    // takeNote() {
-    //     this.notesTaken.push(this.miniMenuController.message);
-    //     console.log(this.notesTaken);
-    //     this.miniMenuController.show = false;
-    //     // setStorageChromeAPI({ "note": msg })
+    takeNote() {
 
-    //     // chrome.storage.sync.get(['note'], function (result) {
-    //     //     console.log(' Value currently is :' + result.note);
-    //     // });
+      let node = Object.assign({}, this.note);
+      delete node.position;
+      node = { [node.id]: node };
+      insertMessage();
 
 
 
-    // }
+      this.$emit("menuOff");
+
+
+
+
+
+    }
   },
   computed: {
     top: function () {
-      return `${this.note.position.top - 45}px`;
+      return `${this.note.position.top - 35}px`;
     },
     left: function () {
       return `${this.note.position.left - 45}px`
     }
-  },
 
+  },
   components: {
     FontAwesomeIcon
   }

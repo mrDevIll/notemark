@@ -1,0 +1,4 @@
+ {"root":[{"parent":{"name": "primo", "children":[{"name":"primo-figlio"},{"name":"fratello"}]}},
+{"parent":{"name": "secondo", "children":[{"name":"secondo-figlio"}]
+}}]
+}

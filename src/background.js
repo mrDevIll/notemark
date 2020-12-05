@@ -1,4 +1,5 @@
-chrome.browserAction.setBadgeText({ text: 'OFF' });
+import initTree from './utility/initTree.js'
 
-chrome.browserAction.setBadgeBackgroundColor({ color: "red" });
+
+initTree();
 

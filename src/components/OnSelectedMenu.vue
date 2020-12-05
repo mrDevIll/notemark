@@ -1,8 +1,10 @@
 <template>
 
 <div>
-
-    <SelectionMainMenu v-if="selectedObject.show" :key="selectedObject.id" :note="selectedObject.note" /> 
+    <SelectedSideMenu />
+    <div v-for="item in items" :key="item.id">
+        <SelectionMainMenu :note="item.note" v-on:menuOff="updateItems" /> 
+    </div>
     
     
 </div>
@@ -11,29 +13,31 @@
 <script>
 
 import SelectionMainMenu from '../components/SelectionMainMenu';
-
+import SelectedSideMenu from '../components/SelectedSideMenu';
 export default {
     name: "OnSelectedMenu",
     data() {
         return {
             selectedObject: { count: 0, show: false },
-
+            items: []
 
 
 
         }
     },
     components: {
-        SelectionMainMenu
+        SelectionMainMenu, SelectedSideMenu
     },
     methods: {
-        handleSelectionMenu: function (e) {
-
+        updateItems: function (e) {
+            console.log(e)
+            this.items.pop()
         }
     },
 
     mounted: function () {
-        startApp(this.selectedObject)
+
+        startApp(this.items)
     }
 
 
@@ -46,19 +50,15 @@ function startApp(element) {
     document.body.addEventListener('mouseup', function (e) {
 
         textSelected = window.getSelection();
-        if (textSelected.toString().length > 0) {
+        if (textSelected.toString().trim().length > 0) {
             let website = document.location.href;
             let title = document.getElementsByTagName('title')[0].innerText;
-            const data = textSelected.toString();
+            const text = textSelected.toString();
             let evt = e;
             let position = { left: evt.pageX, top: evt.pageY };
-            let id = el.count + title.split(" ")[0];
-            el.count++;
-            el.note = { id, title, website, data, position };
-            el.show = true;
 
-            // chrome.runtime.sendMessage({ "textMessage": { title, website, data } });
-
+            let id = element.length + text.split(" ")[0] + position.left;
+            el.push({ note: { id, title, website, text, position } })
         }
         else
             false;
