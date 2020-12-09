@@ -1,9 +1,11 @@
 <template>
 
 <div>
-    <SelectedSideMenu />
+    <!-- <SelectedSideMenu /> -->
+    
     <div v-for="item in items" :key="item.id">
-        <SelectionMainMenu :note="item.note" v-on:menuOff="updateItems" /> 
+        
+        <SelectionMainMenu :note="item" v-on:menuOff="updateItems" /> 
     </div>
     
     
@@ -45,11 +47,11 @@ export default {
 
 function startApp(element) {
     const el = element;
-    let textSelected;
 
     document.body.addEventListener('mouseup', function (e) {
 
-        textSelected = window.getSelection();
+        let textSelected = window.getSelection();
+
         if (textSelected.toString().trim().length > 0) {
             let website = document.location.href;
             let title = document.getElementsByTagName('title')[0].innerText;
@@ -58,7 +60,7 @@ function startApp(element) {
             let position = { left: evt.pageX, top: evt.pageY };
 
             let id = element.length + text.split(" ")[0] + position.left;
-            el.push({ note: { id, title, website, text, position } })
+            el.push({ id, title, website, text, position })
         }
         else
             false;

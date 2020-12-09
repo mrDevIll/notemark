@@ -1,49 +1,46 @@
 <template>
     <div class="container" >
-        <div v-for="n in nodes" :key="n.id"> 
-            <div class="container-title">
-
-            {{n.title}}
-            </div>
-            <div class="contaier-data">{{n.text}}  </div>
-            <hr>
-           <div class="container-website">{{n.web}}</div>
-         </div>
-
+   
+      <div v-for="child in children" :key="child.id">
+        <div class="container-text">
+          {{child.text}}
+        </div>
+        <div class="container-title">
+          {{child.title}} || {{child.web}}
+        </div>
+      </div>
+      
+        
     </div>
 </template>
 <script>
+
 export default {
   name: "node",
-  props: [],
+  props: ["children"],
   data: function () {
     return {
-      nodes: [
-        { id: 0, title: "my first note", text: "this is copied from text selection", web: "geekunyt.com" },
-        { id: 1, title: "my second note", text: "this is copied fort the second note text selection", web: "geekunyt.com" }
-      ]
+
+
     }
-  }
+  },
+
 }
 </script>
 <style scoped>
 .container {
-  padding-top: 1rem;
+  padding: 0.4rem;
   font-size: 0.5rem;
 }
 .container-title {
-  text-align: left;
-  color: aliceblue;
+  text-align: right;
   padding: 0.2rem 0;
-
   font-weight: 800;
-
-  margin-left: -0.4rem;
 }
 .container-data {
   text-align: justify;
   margin-top: 0.3rem;
-  padding: 0.3rem;
+  padding: 0.3rem 0;
   font-size: 0.6rem;
 }
 .container-data:hover {

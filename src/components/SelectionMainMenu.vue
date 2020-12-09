@@ -14,7 +14,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faPlusCircle, faEdit, faCopy } from '@fortawesome/free-solid-svg-icons';
-import insertMessage from '../utility/insertMessage.js'
+import { insertMessage } from '../utility/manageMessage.js'
 
 
 export default {
@@ -31,7 +31,7 @@ export default {
 
   methods: {
     copyMessage() {
-
+      //TODO: add timer to 
 
       try {
         navigator.clipboard.writeText(this.note.data);
@@ -48,10 +48,7 @@ export default {
 
     takeNote() {
 
-      let node = Object.assign({}, this.note);
-      delete node.position;
-      node = { [node.id]: node };
-      insertMessage();
+      insertMessage(this.note, "name");
 
 
 

@@ -1,5 +1,4 @@
-import initTree from './utility/initTree.js'
+import { initMessage } from './utility/manageMessage.js'
 
 
-initTree();
-
+initMessage();
