@@ -48,7 +48,7 @@ export default {
 
     takeNote() {
 
-      insertMessage("name", this.note);
+      insertMessage("name2", this.note);
 
 
 

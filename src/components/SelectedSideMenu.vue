@@ -1,12 +1,11 @@
 <template>
-    <div class="notemark-side-menu" >
-        <!-- {{nodes}} -->
-        
-        <div v-for="(node, key) in nodes" :key="key">
-           <div class="notemark-side-menu-title">
+    <div>
+       
+        <div v-for="(note, key) in nodes" :key="key">
+            <div class="notemark-side-menu-title">
             {{key}}
             </div>
-            <Node :children="node" />
+            <Node :children="note" />
         </div>
 
 
@@ -19,27 +18,17 @@ import Node from './Node'
 export default {
     name: "SelectedSideMenu",
     components: { Node },
-    props: ["nodes"],
+    props: ["nodes", "k"],
     data: function () {
         return {
 
         }
     },
-    computed: {
-        upload() {
 
-        }
-    },
-
-    mounted() {
-
-
-
-    }
 }
 
 </script>
-<style scoped>
+<style>
 .notemark-side-menu {
   position: absolute;
   background-color: gray;

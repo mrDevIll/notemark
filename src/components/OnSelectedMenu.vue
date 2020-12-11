@@ -1,11 +1,13 @@
 <template>
 
 <div>
-    <div v-for="item in sideItems" >
-        <SelectedSideMenu :nodes="item"/>
+    <!-- //TODO: understand why it returns only one element -->
+     
+     <div v-if="sideItems.length" class="notemark-side-menu">
+             <SelectedSideMenu v-for="(item,key) in sideItems" :key="key"  :nodes="item"/>
+      </div>
 
-    </div>
-    
+
     <div v-for="item in items" :key="item.id">
         
         <SelectionMainMenu :note="item" v-on:menuOff="updateItems" /> 
@@ -84,7 +86,7 @@ function populateSideMenu(items) {
     chrome.storage.sync.get(nameChromeStorage, function (res) {
         const r = res[nameChromeStorage];
 
-        uploadedItems.length = 0;
+
         for (let k in r) {
             uploadedItems.push({ [k]: r[k] })
         }
@@ -99,11 +101,11 @@ function keepUpdatedSideMenu(items) {
         const obj = changes[nameChromeStorage];
         if (obj) {
             uploadedItems.length = 0;
-            console.log(obj)
             for (let k in obj.newValue) {
                 uploadedItems.push({ [k]: obj.newValue[k] })
 
             }
+            console.log(uploadedItems)
         }
     });
 }
@@ -113,7 +115,6 @@ function keepUpdatedSideMenu(items) {
 
 <style>
 #notemark-container {
-  position: relative !important;
   padding: 0;
   margin: 0;
 
