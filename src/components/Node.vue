@@ -1,11 +1,11 @@
 <template>
-    <div class="container" >
+    <div class="notemark-container" >
    
       <div v-for="child in children" :key="child.id">
-        <div class="container-text">
+        <div class="notemark-container-text">
           {{child.text}}
         </div>
-        <div class="container-title">
+        <div class="notemark-container-title">
           {{child.title}} || {{child.web}}
         </div>
       </div>
@@ -28,25 +28,26 @@ export default {
 }
 </script>
 <style scoped>
-.container {
+.notemark-container {
   padding: 0.4rem;
   font-size: 0.5rem;
 }
-.container-title {
+.notemark-container-title {
   text-align: right;
   padding: 0.2rem 0;
   font-weight: 800;
+  color: blue !important;
 }
-.container-data {
+.notemark-container-data {
   text-align: justify;
   margin-top: 0.3rem;
   padding: 0.3rem 0;
   font-size: 0.6rem;
 }
-.container-data:hover {
+.notemark-container-data:hover {
   background-color: blue;
 }
-.container-website {
+.notemark-container-website {
   padding: 0.2rem;
 }
 </style>

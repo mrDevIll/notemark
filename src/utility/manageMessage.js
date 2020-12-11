@@ -1,16 +1,26 @@
-const nameChromeStorage = "test4Node";
+import { nameChromeStorage } from "./generalConfig";
+import { Node } from "./Node";
 
-
-
-
-export function insertMessage(node, name) {
+export function deleteNode(name) {
     chrome.storage.sync.get(nameChromeStorage, function (r) {
-        //TODO: check if name is exists as Key and add child instead of node if so
-        const tmp = r.test4Node;
-        const newNote = new Node(tmp);
-        newNote.addNewNode(name, node);
-        console.log(newNote);
-        chrome.storage.sync.set({ [nameChromeStorage]: newNote.node })
+        //TODO: check if name exists as Key
+        const tmp = r[nameChromeStorage];
+        const oldNote = new Node(tmp);
+        oldNote.deleteNode(name);
+        chrome.storage.sync.set({ [nameChromeStorage]: oldNote.node })
+
+    })
+}
+
+
+export function insertMessage(name, node) {
+    chrome.storage.sync.get(nameChromeStorage, function (r) {
+        const tmp = r[nameChromeStorage];
+        const oldNode = new Node(tmp);
+
+        Object.keys(oldNode.node).includes(name) ? oldNode.addChildToExistingParent(name, node) : oldNode.addNewNode(name, node);
+
+        chrome.storage.sync.set({ [nameChromeStorage]: oldNode.node })
 
     })
 }
@@ -32,34 +42,3 @@ export function initMessage() {
 
 
 
-class Node {
-
-    constructor(obj) {
-        this.node = obj || {};
-    }
-
-    addChildToExistingParent(name, child) {
-        //TODO add validation to check if child and name is a valid 
-        this.node[name].push(child)
-    }
-
-    deleteNode(name) {
-        //TODO validate if node name exists
-        const obj = Object.assign({}, this.node);
-        delete obj[name];
-        this.node = obj;
-    }
-    deleteChildFromNode(nodeName, childId) {
-        //TODO add validation
-
-        const branch = [...this.node[nodeName]
-            .filter(child => child.id != childId)];
-
-        this.node[nodeName] = branch;
-    }
-    addNewNode(name, child) {
-        //TODO add validation to check if child is a valid object
-        const newEl = [child];
-        this.node[name] = newEl;
-    }
-}

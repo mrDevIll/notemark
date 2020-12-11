@@ -1,12 +1,12 @@
 <template>
 <div>
-    <div class="mini-menu-selected"  v-bind:style="{top:top, left:left}">
+    <div class="notemark-mini-menu-selected"  v-bind:style="{top:top, left:left}">
     <span v-if="iselect">
       <label for="node" name="node" >new note</label>
         <input type="node" name="node" />
     </span>
-        <font-awesome-icon :icon="copyIcon" class="mini-menu-selected-icon mini-menu-selected-icon-copy" v-on:click="copyMessage" title="copy"/>
-        <font-awesome-icon :icon="plusCircle" class="mini-menu-selected-icon mini-menu-selected-icon-plus" v-on:click="takeNote" title="add to your notes"/> 
+        <font-awesome-icon :icon="copyIcon" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-copy" v-on:click="copyMessage" title="copy"/>
+        <font-awesome-icon :icon="plusCircle" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-plus" v-on:click="takeNote" title="add to your notes"/> 
       
     </div>
 </div>
@@ -48,7 +48,7 @@ export default {
 
     takeNote() {
 
-      insertMessage(this.note, "name");
+      insertMessage("name", this.note);
 
 
 
@@ -76,7 +76,7 @@ export default {
 }
 </script>
 <style scoped>
-.mini-menu-selected {
+.notemark-mini-menu-selected {
   position: absolute;
 
   padding: 0.4rem 0.8rem;
@@ -85,13 +85,13 @@ export default {
 
   z-index: 10000;
 }
-.mini-menu-selected-icon {
+.notemark-mini-menu-selected-icon {
   color: white;
 }
-.mini-menu-selected-icon:first-child {
+.notemark-mini-menu-selected-icon:first-child {
   margin-right: 1rem;
 }
-.mini-menu-selected-icon:hover {
+.notemark-mini-menu-selected-icon:hover {
   color: #6ee7b7;
   transform: scale(1.3);
 }

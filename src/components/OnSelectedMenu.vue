@@ -1,7 +1,10 @@
 <template>
 
 <div>
-    <!-- <SelectedSideMenu /> -->
+    <div v-for="item in sideItems" >
+        <SelectedSideMenu :nodes="item"/>
+
+    </div>
     
     <div v-for="item in items" :key="item.id">
         
@@ -16,13 +19,14 @@
 
 import SelectionMainMenu from '../components/SelectionMainMenu';
 import SelectedSideMenu from '../components/SelectedSideMenu';
+import { nameChromeStorage } from '../utility/generalConfig.js'
 export default {
     name: "OnSelectedMenu",
     data() {
         return {
             selectedObject: { count: 0, show: false },
-            items: []
-
+            items: [],
+            sideItems: []
 
 
         }
@@ -30,22 +34,27 @@ export default {
     components: {
         SelectionMainMenu, SelectedSideMenu
     },
+    computed: {
+
+    },
     methods: {
         updateItems: function (e) {
-            console.log(e)
-            this.items.pop()
+            this.items.pop();
+
+
         }
     },
 
     mounted: function () {
-
-        startApp(this.items)
+        addListenerToPageContent(this.items);
+        populateSideMenu(this.sideItems);
+        keepUpdatedSideMenu(this.sideItems);
     }
 
 
 }
 
-function startApp(element) {
+function addListenerToPageContent(element) {
     const el = element;
 
     document.body.addEventListener('mouseup', function (e) {
@@ -70,17 +79,47 @@ function startApp(element) {
 
 }
 
-function setStorageChromeAPI(obj) {
+function populateSideMenu(items) {
+    const uploadedItems = items;
+    chrome.storage.sync.get(nameChromeStorage, function (res) {
+        const r = res[nameChromeStorage];
 
-    chrome.storage.sync.set(obj, function () {
-        console.log(obj);
+        uploadedItems.length = 0;
+        for (let k in r) {
+            uploadedItems.push({ [k]: r[k] })
+        }
+
+
+    });
+}
+
+function keepUpdatedSideMenu(items) {
+    const uploadedItems = items;
+    chrome.storage.onChanged.addListener(function (changes) {
+        const obj = changes[nameChromeStorage];
+        if (obj) {
+            uploadedItems.length = 0;
+            console.log(obj)
+            for (let k in obj.newValue) {
+                uploadedItems.push({ [k]: obj.newValue[k] })
+
+            }
+        }
     });
 }
 
 
 </script>
 
-<style scoped>
+<style>
+#notemark-container {
+  position: relative !important;
+  padding: 0;
+  margin: 0;
+
+  color: black;
+  background-color: skyblue;
+}
 </style>
 
 
