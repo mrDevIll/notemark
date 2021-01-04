@@ -1,15 +1,12 @@
 <template>
 
 <div>
-    <!-- //TODO: understand why it returns only one element -->
+       
      
-     <div v-if="sideItems.length" class="notemark-side-menu">
-             <SelectedSideMenu v-for="(item,key) in sideItems" :key="key"  :nodes="item"/>
-      </div>
 
 
     <div v-for="item in items" :key="item.id">
-        
+        <!-- TODO: add a flag to stop new pop up once the menu is active -->
         <SelectionMainMenu :note="item" v-on:menuOff="updateItems" /> 
     </div>
     
@@ -20,7 +17,7 @@
 <script>
 
 import SelectionMainMenu from '../components/SelectionMainMenu';
-import SelectedSideMenu from '../components/SelectedSideMenu';
+
 import { nameChromeStorage } from '../utility/generalConfig.js'
 export default {
     name: "OnSelectedMenu",
@@ -34,7 +31,7 @@ export default {
         }
     },
     components: {
-        SelectionMainMenu, SelectedSideMenu
+        SelectionMainMenu,
     },
     computed: {
 
@@ -49,8 +46,7 @@ export default {
 
     mounted: function () {
         addListenerToPageContent(this.items);
-        populateSideMenu(this.sideItems);
-        keepUpdatedSideMenu(this.sideItems);
+
     }
 
 
@@ -58,7 +54,7 @@ export default {
 
 function addListenerToPageContent(element) {
     const el = element;
-
+    console.log("addevent listener")
     document.body.addEventListener('mouseup', function (e) {
 
         let textSelected = window.getSelection();
@@ -81,34 +77,9 @@ function addListenerToPageContent(element) {
 
 }
 
-function populateSideMenu(items) {
-    const uploadedItems = items;
-    chrome.storage.sync.get(nameChromeStorage, function (res) {
-        const r = res[nameChromeStorage];
 
 
-        for (let k in r) {
-            uploadedItems.push({ [k]: r[k] })
-        }
 
-
-    });
-}
-
-function keepUpdatedSideMenu(items) {
-    const uploadedItems = items;
-    chrome.storage.onChanged.addListener(function (changes) {
-        const obj = changes[nameChromeStorage];
-        if (obj) {
-            uploadedItems.length = 0;
-            for (let k in obj.newValue) {
-                uploadedItems.push({ [k]: obj.newValue[k] })
-
-            }
-            console.log(uploadedItems)
-        }
-    });
-}
 
 
 </script>

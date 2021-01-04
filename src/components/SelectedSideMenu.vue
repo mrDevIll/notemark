@@ -4,6 +4,9 @@
         <div v-for="(note, key) in nodes" :key="key">
             <div class="notemark-side-menu-title">
             {{key}}
+            <button class="btn">
+                    delete {{key}}
+            </button>
             </div>
             <Node :children="note" />
         </div>

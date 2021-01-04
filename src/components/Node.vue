@@ -6,10 +6,10 @@
           {{child.text}}
         </div>
         <div class="notemark-container-title">
-          {{child.title}} || {{child.web}}
+          {{child.title}}  {{child.web}}
         </div>
+      <button>delete {{child.id}}</button>
       </div>
-      
         
     </div>
 </template>
@@ -38,11 +38,11 @@ export default {
   font-weight: 800;
   color: blue !important;
 }
-.notemark-container-data {
+.notemark-container-text {
   text-align: justify;
   margin-top: 0.3rem;
   padding: 0.3rem 0;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 }
 .notemark-container-data:hover {
   background-color: blue;

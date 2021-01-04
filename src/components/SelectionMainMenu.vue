@@ -1,12 +1,11 @@
 <template>
 <div>
     <div class="notemark-mini-menu-selected"  v-bind:style="{top:top, left:left}">
-    <span v-if="iselect">
-      <label for="node" name="node" >new note</label>
-        <input type="node" name="node" />
-    </span>
         <font-awesome-icon :icon="copyIcon" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-copy" v-on:click="copyMessage" title="copy"/>
         <font-awesome-icon :icon="plusCircle" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-plus" v-on:click="takeNote" title="add to your notes"/> 
+    <span class="notemark-mini-menu-selected-noteInput">
+       <input type="node" name="node" v-model="noteName"/>
+    </span>
       
     </div>
 </div>
@@ -23,7 +22,8 @@ export default {
   data: function () {
     return {
       plusCircle: faPlusCircle, copyIcon: faCopy,
-      iselect: false
+      iselect: true,
+      noteName: "note"
 
 
     }
@@ -48,7 +48,7 @@ export default {
 
     takeNote() {
 
-      insertMessage("name2", this.note);
+      insertMessage(this.noteName, this.note);
 
 
 
@@ -86,6 +86,7 @@ export default {
   z-index: 10000;
 }
 .notemark-mini-menu-selected-icon {
+  margin-right: 0.5rem;
   color: white;
 }
 .notemark-mini-menu-selected-icon:first-child {
