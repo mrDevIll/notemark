@@ -1,10 +1,6 @@
 <template>
 
 <div >
-       
-     
-
-
     <div v-for="item in items" :key="item.id">
         <!-- TODO: add a flag to stop new pop up once the menu is active -->
         <SelectionMainMenu :note="item" v-on:menuOff="updateItems" /> 
@@ -25,7 +21,7 @@ export default {
         return {
             selectedObject: { count: 0, show: false },
             items: [],
-            sideItems: []
+
 
 
         }
@@ -83,15 +79,5 @@ function addListenerToPageContent(element) {
 
 
 </script>
-
-<style>
-#notemark-container {
-  padding: 0;
-  margin: 0;
-
-  color: black;
-  background-color: skyblue;
-}
-</style>
 
 

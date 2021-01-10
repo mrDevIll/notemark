@@ -21,7 +21,8 @@ export default {
   props: ['note'],
   data: function () {
     return {
-      plusCircle: faPlusCircle, copyIcon: faCopy,
+      plusCircle: faPlusCircle,
+      copyIcon: faCopy,
       iselect: true,
       noteName: "note"
 

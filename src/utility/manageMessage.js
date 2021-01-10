@@ -11,7 +11,16 @@ export function deleteNode(name) {
 
     })
 }
+export function deleteNodeChild(name, id) {
+    chrome.storage.sync.get(nameChromeStorage, function (r) {
+        //TODO: check if name exists as Key
+        const tmp = r[nameChromeStorage];
+        const oldNote = new Node(tmp);
+        oldNote.deleteChildFromNode(name, id);
+        chrome.storage.sync.set({ [nameChromeStorage]: oldNote.node })
 
+    })
+}
 
 export function insertMessage(name, node) {
     chrome.storage.sync.get(nameChromeStorage, function (r) {

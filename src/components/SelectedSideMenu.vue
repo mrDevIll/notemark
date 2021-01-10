@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <div class="note-side-menu">
        
-        <div v-for="(note, key) in nodes" :key="key">
-            <div class="notemark-side-menu-title">
-            {{key}}
-            <button class="btn">
-                    delete {{key}}
-            </button>
+        <div v-for="(note, key) in nodes" :key="key" class="note-side-menu-content">
+            <div class="note-side-menu-title">
+            {{key}} <font-awesome-icon :icon="faMinus" title="delete" class="delete-icon icons cliccable" v-on:click="deleteParent(key)"/> 
+            <!-- TODO: add delete function{{key}} -->
+            
             </div>
-            <Node :children="note" />
+            <hr>
+            <ChildNote :children="note" :father="key" />
         </div>
 
 
@@ -16,36 +16,40 @@
     </div>
 </template>
 <script>
-import Node from './Node'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import ChildNote from './ChildNote';
+import { deleteNode } from '../utility/manageMessage.js'
 
 export default {
-    name: "SelectedSideMenu",
-    components: { Node },
-    props: ["nodes", "k"],
-    data: function () {
-        return {
-
-        }
-    },
+  name: "SelectedSideMenu",
+  components: { ChildNote, FontAwesomeIcon },
+  props: ["nodes", "k"],
+  data: function () {
+    return {
+      faMinus: faMinusCircle
+    }
+  },
+  methods: {
+    deleteParent: function (name) {
+      deleteNode(name);
+    }
+  }
 
 }
 
 </script>
 <style>
-.notemark-side-menu {
-  position: absolute;
-  background-color: gray;
-  color: black;
-  top: 10%;
-  right: 0;
-  width: 15%;
-  padding: 1rem 0;
-  border-radius: 10px;
-  z-index: 100000;
+.note-side-menu {
+  padding: 0.1rem;
 }
-.notemark-side-menu-title {
-  margin-left: 0.3rem;
-  font-size: 0.7rem;
-  color: black !important;
+.note-side-menu-content {
+  padding: 0.2rem;
+}
+.note-side-menu-title {
+  padding: 0.3rem;
+  color: #512da8;
+  font-size: x-large;
+  font-weight: bolder;
 }
 </style>

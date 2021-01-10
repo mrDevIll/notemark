@@ -1,9 +1,12 @@
 <template>
   <div id="app">
+    <div >
+
    <h3>test</h3>
-    <div v-if="items.length">
-             <SelectedSideMenu v-for="(item,key) in items" :key="key"  :nodes="item"/>
+    <div v-if="items.length" class="app-container">
+             <SelectedSideMenu v-for="(item,key) in items" :key="key"  :nodes="item"  />
       </div>
+    </div>
        
   </div>
 </template>
@@ -62,4 +65,23 @@ function keepUpdatedSideMenu(items) {
 </script>
 
 <style>
+.app-container {
+  width: 460px;
+  padding: 0.5rem 1rem;
+}
+.icons {
+  vertical-align: middle;
+  height: 0.7rem;
+}
+.delete-icon {
+  color: red;
+  /*TODO: move class to global */
+}
+.cliccable {
+  cursor: pointer;
+}
+
+.cliccable:hover {
+  transform: scale(1.2);
+}
 </style>
