@@ -8,7 +8,7 @@
         <div class="child-container-ref">
           {{child.title}}  {{child.web}} 
          <font-awesome-icon :icon="faMinus" title="delete" class="delete-icon icons cliccable" v-on:click="deleteChild(father, child.id)"/>
-         <!-- TODO: add delete funciton via child.id {{child.id}} -->
+         
         </div>
       </div>
         

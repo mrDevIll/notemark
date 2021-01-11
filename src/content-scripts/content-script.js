@@ -1,12 +1,12 @@
 import Vue from 'vue';
-import OnSelectedMenu from '../components/OnSelectedMenu.vue'
-import { initExtension } from '../utility/generalConfig.js';
+import ContextPopup from './ContextPopup.vue'
+import { initExtension } from '../utility/initEnv.js';
 
 Vue.config.productionTip = false
 
 initExtension()
 new Vue({
-    render: h => h(OnSelectedMenu),
+    render: h => h(ContextPopup),
 }).$mount('#notemark-container')
 
 

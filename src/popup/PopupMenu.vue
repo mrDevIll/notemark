@@ -4,7 +4,7 @@
         <div v-for="(note, key) in nodes" :key="key" class="note-side-menu-content">
             <div class="note-side-menu-title">
             {{key}} <font-awesome-icon :icon="faMinus" title="delete" class="delete-icon icons cliccable" v-on:click="deleteParent(key)"/> 
-            <!-- TODO: add delete function{{key}} -->
+           
             
             </div>
             <hr>
@@ -22,7 +22,7 @@ import ChildNote from './ChildNote';
 import { deleteNode } from '../utility/manageMessage.js'
 
 export default {
-  name: "SelectedSideMenu",
+  name: "PopupMenu",
   components: { ChildNote, FontAwesomeIcon },
   props: ["nodes", "k"],
   data: function () {

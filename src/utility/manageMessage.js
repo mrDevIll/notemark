@@ -1,4 +1,4 @@
-import { nameChromeStorage } from "./generalConfig";
+import { nameChromeStorage } from "./initEnv";
 import { Node } from "./Node";
 
 export function deleteNode(name) {

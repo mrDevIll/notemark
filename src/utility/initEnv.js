@@ -1,4 +1,6 @@
-export const nameChromeStorage = "test5Node";
+export const nameChromeStorage = "notemark-extension";
+
+export const badgeStatus = "off";
 
 
 export function initExtension() {

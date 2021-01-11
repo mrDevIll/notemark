@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <div >
-
-   <h3>test</h3>
+    <hr>
+      <h2>Notemarks</h2>
+    <hr>
+    <div>
+      <ToggleButton />
+    </div>
     <div v-if="items.length" class="app-container">
-             <SelectedSideMenu v-for="(item,key) in items" :key="key"  :nodes="item"  />
+             <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item"  />
       </div>
     </div>
        
@@ -12,8 +16,9 @@
 </template>
 
 <script>
-import SelectedSideMenu from '../components/SelectedSideMenu';
-import { nameChromeStorage } from '../utility/generalConfig.js'
+import PopupMenu from './PopupMenu';
+import ToggleButton from '../components/ToggleButton';
+import { nameChromeStorage } from '../utility/initEnv.js';
 
 export default {
   name: "App",
@@ -23,7 +28,7 @@ export default {
     }
   },
   components: {
-    SelectedSideMenu
+    PopupMenu, ToggleButton
 
   },
   mounted: function () {
@@ -62,6 +67,8 @@ function keepUpdatedSideMenu(items) {
     }
   });
 }
+
+
 </script>
 
 <style>

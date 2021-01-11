@@ -27,6 +27,4 @@ export default {
   color: white;
   z-index: 10000;
 }
-.side-menu-note-mark {
-}
 </style>

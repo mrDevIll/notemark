@@ -3,7 +3,7 @@
 <div >
     <div v-for="item in items" :key="item.id">
         <!-- TODO: add a flag to stop new pop up once the menu is active -->
-        <SelectionMainMenu :note="item" v-on:menuOff="updateItems" /> 
+        <ContextPopupMenu :note="item" v-on:menuOff="updateItems" /> 
     </div>
     
     
@@ -12,11 +12,11 @@
 
 <script>
 
-import SelectionMainMenu from '../components/SelectionMainMenu';
+import ContextPopupMenu from './ContextPopupMenu';
+import { nameChromeStorage } from '../utility/initEnv.js';
 
-import { nameChromeStorage } from '../utility/generalConfig.js'
 export default {
-    name: "OnSelectedMenu",
+    name: "ContextPopup",
     data() {
         return {
             selectedObject: { count: 0, show: false },
@@ -27,7 +27,7 @@ export default {
         }
     },
     components: {
-        SelectionMainMenu,
+        ContextPopupMenu,
     },
     computed: {
 
@@ -35,8 +35,6 @@ export default {
     methods: {
         updateItems: function (e) {
             this.items.pop();
-
-
         }
     },
 

@@ -1,14 +1,20 @@
 <template>
+<div>
+  
     <label for="toggle_button">
-        <span v-if="isActive" class="toggle__label">On</span>
-        <span v-if="! isActive" class="toggle__label">Off</span>
+        <span v-if="isActive" class="toggle__label">Enabled</span>
+        <span v-if="! isActive" class="toggle__label">Disabled</span>
 
         <input type="checkbox" id="toggle_button" v-model="checkedValue">
         <span class="toggle__switch"></span>
     </label>
+</div>
 </template>
 <script>
+
+
 export default {
+  name: "ToggleButton",
   data() {
     return {
       currentState: false
@@ -20,20 +26,27 @@ export default {
 
       return this.currentState;
     },
+    mounted: {
+      initBadge: function () {
+        changeBadgeText("Off");
+      }
+    },
 
     checkedValue: {
       get() {
         return this.defaultState
       },
       set(newValue) {
-        let text = newValue ? "" : "OFF";
-        chrome.browserAction.setBadgeText({ text });
-
-
+        let text = newValue ? "On" : "OFF";
+        changeBadgeText({ text });
         this.currentState = newValue;
       }
     }
   }
+}
+
+function changeBadgeText(text) {
+  chrome.browserAction.setBadgeText(text);
 }
 </script>
 
