@@ -4,12 +4,14 @@
     <hr>
       <h2>Notemarks</h2>
     <hr>
-    <div>
+    <!-- <div>
       <ToggleButton />
-    </div>
-    <div v-if="items.length" class="app-container">
+    </div> -->
+    <div v-if="items.length" class="app-container" id="notemark-note">
              <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item"  />
-      </div>
+     <PrintButton />
+     </div>
+      
     </div>
        
   </div>
@@ -19,6 +21,7 @@
 import PopupMenu from './PopupMenu';
 import ToggleButton from '../components/ToggleButton';
 import { nameChromeStorage } from '../utility/initEnv.js';
+import PrintButton from '../components/PrintButton';
 
 export default {
   name: "App",
@@ -28,9 +31,10 @@ export default {
     }
   },
   components: {
-    PopupMenu, ToggleButton
+    PopupMenu, ToggleButton, PrintButton
 
   },
+
   mounted: function () {
     populateSideMenu(this.items);
     keepUpdatedSideMenu(this.items);
@@ -78,7 +82,7 @@ function keepUpdatedSideMenu(items) {
 }
 .icons {
   vertical-align: middle;
-  height: 0.7rem;
+  height: 0.8rem;
 }
 .delete-icon {
   color: red;

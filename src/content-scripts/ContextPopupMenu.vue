@@ -1,6 +1,7 @@
 <template>
 <div>
     <div class="notemark-mini-menu-selected"  v-bind:style="{top:top, left:left}">
+        
         <font-awesome-icon :icon="copyIcon" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-copy" v-on:click="copyMessage" title="copy"/>
         <font-awesome-icon :icon="plusCircle" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-plus" v-on:click="takeNote" title="add to your notes"/> 
     <span class="">
@@ -18,28 +19,21 @@ import { insertMessage } from '../utility/manageMessage.js'
 
 export default {
   name: "ContextPopupMenu",
-  props: ['note'],
+  props: ['note', 'states'],
   data: function () {
     return {
       plusCircle: faPlusCircle,
       copyIcon: faCopy,
-      iselect: true,
       noteName: "note"
-
-
     }
   },
 
   methods: {
     copyMessage() {
-      //TODO: add timer to 
+
       try {
-        navigator.clipboard.writeText(this.note.data);
-        function n(x) { return function () { console.log(n) } }
-        chrome.storage.sync.get(['node'], function (result) {
-          n(result);
-          console.log(result)
-        })
+        navigator.clipboard.writeText(this.note.text);
+
         this.$emit("menuOff");
       } catch (e) {
         console.log("error copying the data: " + e)
@@ -59,7 +53,6 @@ export default {
     left: function () {
       return `${this.note.position.left - 45}px`
     }
-
   },
   components: {
     FontAwesomeIcon

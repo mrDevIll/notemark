@@ -3,6 +3,7 @@ export const nameChromeStorage = "notemark-extension";
 export const badgeStatus = "off";
 
 
+
 export function initExtension() {
     const bodyTag = window.document.getElementsByTagName("body");
     const vueDivContainer = document.createElement("div");

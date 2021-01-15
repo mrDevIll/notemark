@@ -7,7 +7,7 @@
            
             
             </div>
-            <hr>
+            
             <ChildNote :children="note" :father="key" />
         </div>
 

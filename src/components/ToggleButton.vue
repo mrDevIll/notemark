@@ -2,8 +2,8 @@
 <div>
   
     <label for="toggle_button">
-        <span v-if="isActive" class="toggle__label">Enabled</span>
-        <span v-if="! isActive" class="toggle__label">Disabled</span>
+        <span v-if="isActive" class="toggle__label" >Enabled</span>
+        <span v-if="!isActive" class="toggle__label">Disabled</span>
 
         <input type="checkbox" id="toggle_button" v-model="checkedValue">
         <span class="toggle__switch"></span>
@@ -17,7 +17,7 @@ export default {
   name: "ToggleButton",
   data() {
     return {
-      currentState: false
+      currentState: true
     }
   },
 
@@ -27,9 +27,7 @@ export default {
       return this.currentState;
     },
     mounted: {
-      initBadge: function () {
-        changeBadgeText("Off");
-      }
+
     },
 
     checkedValue: {
@@ -37,7 +35,7 @@ export default {
         return this.defaultState
       },
       set(newValue) {
-        let text = newValue ? "On" : "OFF";
+        let text = newValue ? "" : "Off";
         changeBadgeText({ text });
         this.currentState = newValue;
       }
