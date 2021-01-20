@@ -19,7 +19,6 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import ChildNote from './ChildNote';
-import { deleteNode } from '../utility/manageMessage.js'
 
 export default {
   name: "PopupMenu",
@@ -31,9 +30,10 @@ export default {
     }
   },
   methods: {
-    deleteParent: function (name) {
-      deleteNode(name);
+    deleteParent(key) {
+      this.$emit("deleteNote", key)
     }
+
   }
 
 }

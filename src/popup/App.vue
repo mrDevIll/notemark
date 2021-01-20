@@ -1,15 +1,21 @@
 <template>
   <div id="app">
     <div >
-    <hr>
-      <h2>Notemarks</h2>
+
+      <h2>Notemarks
+
+      </h2>
     <hr>
     <!-- <div>
       <ToggleButton />
     </div> -->
     <div v-if="items.length" class="app-container" id="notemark-note">
-             <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item"  />
+      <h4>{{itemSize}} note{{itemSize == 1? "" : "s"}}</h4>
+             <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item" v-on:deleteNote="deleteItem" />
      <PrintButton />
+     </div>
+     <div v-else class="app-container">
+             <h4> 0 notes</h4>
      </div>
       
     </div>
@@ -21,23 +27,42 @@
 import PopupMenu from './PopupMenu';
 import ToggleButton from '../components/ToggleButton';
 import { nameChromeStorage } from '../utility/initEnv.js';
+import { deleteNode } from '../utility/manageMessage.js'
 import PrintButton from '../components/PrintButton';
 
 export default {
   name: "App",
   data() {
     return {
-      items: []
+      items: [],
     }
   },
   components: {
     PopupMenu, ToggleButton, PrintButton
 
   },
+  methods: {
+    deleteItem: function (e) {
+      if (this.items.length === 1) {
+        deleteNode(e);
+        location.reload(true);
+      }
+      if (this.items.length > 1) {
+        deleteNode(e);
+      }
+    }
+  },
 
+  computed: {
+    itemSize: function () {
+      return this.items.length;
+    }
+  },
   mounted: function () {
     populateSideMenu(this.items);
     keepUpdatedSideMenu(this.items);
+
+
   }
 
 
@@ -57,6 +82,10 @@ function populateSideMenu(items) {
   });
 }
 
+function updateBadge(text) {
+  chrome.browserAction.setBadgeText(text);
+}
+
 function keepUpdatedSideMenu(items) {
   const uploadedItems = items;
   chrome.storage.onChanged.addListener(function (changes) {
@@ -67,7 +96,7 @@ function keepUpdatedSideMenu(items) {
         uploadedItems.push({ [k]: obj.newValue[k] })
 
       }
-      console.log(uploadedItems)
+
     }
   });
 }
@@ -86,7 +115,7 @@ function keepUpdatedSideMenu(items) {
 }
 .delete-icon {
   color: red;
-  /*TODO: move class to global */
+  padding: 0 0.2rem;
 }
 .cliccable {
   cursor: pointer;

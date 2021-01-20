@@ -1,6 +1,6 @@
 export const nameChromeStorage = "notemark-extension";
 
-export const badgeStatus = "off";
+export const appStatus = "notemark-status";
 
 
 

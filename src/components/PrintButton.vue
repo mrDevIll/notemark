@@ -1,5 +1,8 @@
 <template>
+<div class="notemark-button">
+
     <button @click="printNotes" class="button" > print </button>
+</div>
 </template>
 <script>
 import { printContent } from '../utility/printUtility.js'
@@ -14,6 +17,11 @@ export default {
 }
 
 </script >
+<style scoped>
+.notemark-button {
+  padding: 0.2rem;
+}
+</style>
 
 
 

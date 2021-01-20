@@ -6,7 +6,7 @@
           {{child.text}}
         </div>
         <div class="child-container-ref">
-          {{child.title}} - {{child.website}} 
+          {{child.title}} - <a :href="child.website" title="CTRL + click to open in a new tab">{{child.website}}</a> 
          <font-awesome-icon :icon="faMinus" title="delete" class="delete-icon icons cliccable" v-on:click="deleteChild(father, child.id)"/>
          
         </div>
