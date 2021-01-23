@@ -10,14 +10,16 @@
       <ToggleButton />
     </div> -->
     <div v-if="items.length" class="app-container" id="notemark-note">
+      
       <h4>{{itemSize}} note{{itemSize == 1? "" : "s"}}</h4>
              <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item" v-on:deleteNote="deleteItem" />
      <PrintButton />
+      
      </div>
      <div v-else class="app-container">
              <h4> 0 notes</h4>
      </div>
-      
+      <ScreenShotButton />
     </div>
        
   </div>
@@ -29,6 +31,7 @@ import ToggleButton from '../components/ToggleButton';
 import { nameChromeStorage } from '../utility/initEnv.js';
 import { deleteNode } from '../utility/manageMessage.js'
 import PrintButton from '../components/PrintButton';
+import ScreenShotButton from '../components/ScreenShotButton';
 
 export default {
   name: "App",
@@ -38,7 +41,7 @@ export default {
     }
   },
   components: {
-    PopupMenu, ToggleButton, PrintButton
+    PopupMenu, ToggleButton, PrintButton, ScreenShotButton
 
   },
   methods: {
@@ -106,8 +109,9 @@ function keepUpdatedSideMenu(items) {
 
 <style>
 .app-container {
+  font-family: Cochin, Georgia, Times, "Times New Roman", serif;
   width: 460px;
-  padding: 0.5rem 1rem;
+  padding: 2rem 2.5rem;
 }
 .icons {
   vertical-align: middle;
@@ -120,8 +124,14 @@ function keepUpdatedSideMenu(items) {
 .cliccable {
   cursor: pointer;
 }
+.cliccable:active {
+  color: gray;
+}
 
 .cliccable:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
+}
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

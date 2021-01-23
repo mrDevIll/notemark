@@ -1,8 +1,8 @@
 <template>
 <div>
-    <div class="notemark-mini-menu-selected"  v-bind:style="{top:top, left:left}">
+    <div class="notemark-mini-menu-selected shadow"  v-bind:style="{top:top, left:left}">
         
-        <font-awesome-icon :icon="timesCircle" class=" delete-icon cliccable" v-on:click="closeMenu" title="close"/>
+        <font-awesome-icon :icon="timesCircle" class=" close-icon cliccable" v-on:click="closeMenu" title="close"/>
         <font-awesome-icon :icon="copyIcon" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-copy cliccable" v-on:click="copyMessage" title="copy"/>
         <font-awesome-icon :icon="plusCircle" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-plus cliccable" v-on:click="takeNote" title="add to your notes"/> 
     <span class="">
@@ -70,8 +70,8 @@ export default {
 .notemark-mini-menu-selected {
   position: absolute;
   padding: 0.4rem 0.8rem;
-  background-color: #4b3bac;
-  border: 0.1rem solid #fcefc7;
+  background-color: #7c4dff;
+  border: 0.1rem solid #bdbdbd;
   border-radius: 3%;
   opacity: 0.95;
   z-index: 10000;
@@ -91,7 +91,7 @@ export default {
   padding: 0 0.2rem;
   width: 6rem;
 }
-.delete-icon {
+.close-icon {
   color: red;
   position: absolute;
   top: -0.5rem;
@@ -102,7 +102,7 @@ export default {
   opacity: 0.9;
   /*TODO: move class to global */
 }
-.delete-icon:hover {
+.close-icon:hover {
   color: orangered;
   opacity: 1;
 }

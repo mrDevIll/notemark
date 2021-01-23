@@ -4,4 +4,7 @@
 }
 
 const node = [{name: "name", children:[]}]
-  
+
+
+updateEventListener -> 
+add a flag to switch add/remove the event listener on mouseup 

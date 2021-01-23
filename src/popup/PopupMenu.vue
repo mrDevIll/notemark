@@ -47,9 +47,10 @@ export default {
   padding: 0.2rem;
 }
 .note-side-menu-title {
+  text-transform: uppercase;
   padding: 0.3rem;
-  color: #512da8;
+  color: #616161;
   font-size: x-large;
-  font-weight: bolder;
+  /* font-weight: bolder; */
 }
 </style>

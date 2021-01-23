@@ -1,11 +1,13 @@
 <template>
 
 <div >
-    <div v-for="item in items.notes" :key="item.id">
+        <transition name="fade">
+    <div v-for="item in items.notes" :key="item.id" >
         <!-- TODO: add a flag to stop new pop up once the menu is active -->
-        
-        <ContextPopupMenu :note="item" v-on:menuOff="updateItems"  /> 
+        <ContextPopupMenu :note="item" v-on:menuOff="updateItems" /> 
+
     </div>
+        </transition>
     
     
 </div>
@@ -26,9 +28,7 @@ export default {
         }
     },
     components: {
-        ContextPopupMenu,
-    },
-    computed: {
+        ContextPopupMenu
     },
     methods: {
         updateItems: function (e) {
@@ -78,4 +78,16 @@ function addListenerToPageContent(element) {
 
 </script>
 
+<style>
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
 
