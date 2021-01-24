@@ -8,7 +8,9 @@ export class Node {
         //TODO add validation to check if child and name is a valid 
         this.node[name].push(child);
     }
-
+    deleteAllNodes() {
+        this.node = {};
+    }
     deleteNode(name) {
         //TODO validate if node name exists
         const obj = Object.assign({}, this.node);

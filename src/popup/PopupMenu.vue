@@ -3,7 +3,7 @@
        
         <div v-for="(note, key) in nodes" :key="key" class="note-side-menu-content">
             <div class="note-side-menu-title">
-            {{key}} <font-awesome-icon :icon="faMinus" title="delete" class="delete-icon icons cliccable" v-on:click="deleteParent(key)"/> 
+            {{key}} <font-awesome-icon :icon="trash" title="delete note" class="trash-icon icons cliccable" v-on:click="deleteParent(key)"/> 
            
             
             </div>
@@ -17,7 +17,7 @@
 </template>
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import ChildNote from './ChildNote';
 
 export default {
@@ -26,7 +26,7 @@ export default {
   props: ["nodes", "k"],
   data: function () {
     return {
-      faMinus: faMinusCircle
+      trash: faTrashAlt
     }
   },
   methods: {
@@ -52,5 +52,8 @@ export default {
   color: #616161;
   font-size: x-large;
   /* font-weight: bolder; */
+}
+.trash-icon {
+  color: darkmagenta;
 }
 </style>

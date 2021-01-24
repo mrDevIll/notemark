@@ -11,6 +11,12 @@ export function deleteNode(name) {
 
     })
 }
+
+export function deleteAllNode() {
+    var note = new Node;
+    chrome.storage.sync.set({ [nameChromeStorage]: note.node });
+}
+
 export function deleteNodeChild(name, id) {
     chrome.storage.sync.get(nameChromeStorage, function (r) {
         //TODO: check if name exists as Key
@@ -34,6 +40,15 @@ export function insertMessage(name, node) {
     })
 }
 
+
+export function getKeysMessages(arrKeys) {
+    chrome.storage.sync.get(nameChromeStorage, function (r) {
+        const k = Object.keys(r[nameChromeStorage]);
+        k.length ? k.map(x => arrKeys.push(x)) : arrKeys.push("note");//returns an array with "note" in case the 
+
+    });
+
+}
 
 export function initMessage() {
     var note = new Node;

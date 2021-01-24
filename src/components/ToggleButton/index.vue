@@ -1,9 +1,9 @@
 <template>
-<div>
+<div class="toggle-container">
   
     <label for="toggle_button">
-        <span v-if="isActive" class="toggle__label" >Enabled</span>
-        <span v-if="!isActive" class="toggle__label">Disabled</span>
+        <span v-if="isActive" class="toggle__label">On</span>
+        <span v-if="! isActive" class="toggle__label">Off</span>
 
         <input type="checkbox" id="toggle_button" v-model="checkedValue">
         <span class="toggle__switch"></span>
@@ -11,45 +11,47 @@
 </div>
 </template>
 <script>
-
+import { getStatus, setStatus } from '../../utility/manageStatus.js';
 
 export default {
   name: "ToggleButton",
   data() {
     return {
-      currentState: true
+      currentState: { active: false }
     }
   },
 
   computed: {
     isActive() {
-
-      return this.currentState;
+      return this.currentState.active;
     },
-    mounted: {
-
-
-    },
-
     checkedValue: {
       get() {
-        return this.defaultState
+        return this.currentState.active
       },
       set(newValue) {
-        let text = newValue ? "" : "Off";
-        changeBadgeText({ text });
-        this.currentState = newValue;
+        setStatus(newValue);
+        this.currentState.active = newValue;
       }
     }
-  }
+  },
+  mounted: function () {
+    getStatus(this.currentState);
+
+  },
+
 }
 
-function changeBadgeText(text) {
-  chrome.browserAction.setBadgeText(text);
-}
+
+
 </script>
 
 <style scoped>
+.toggle-container {
+  position: absolute;
+  top: 1rem;
+  left: 0.5rem;
+}
 .toggle__button {
   vertical-align: middle;
   user-select: none;

@@ -1,35 +1,25 @@
 <template>
   <div id="app">
-    <div >
-
-      <h2>Notemarks
-
-      </h2>
-    <hr>
-    <!-- <div>
-      <ToggleButton />
-    </div> -->
+    <MenuBar :itemSize="itemSize"/>
+    
     <div v-if="items.length" class="app-container" id="notemark-note">
-      
-      <h4>{{itemSize}} note{{itemSize == 1? "" : "s"}}</h4>
-             <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item" v-on:deleteNote="deleteItem" />
+                  <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item" v-on:deleteNote="deleteItem" />
      <PrintButton />
       
      </div>
-     <div v-else class="app-container">
-             <h4> 0 notes</h4>
-     </div>
-      <ScreenShotButton />
-    </div>
+     <div v-else class="app-container center">------select some text to add notes------</div>
+     
+      <!-- <ScreenShotButton /> -->
+    
        
   </div>
 </template>
 
 <script>
 import PopupMenu from './PopupMenu';
-import ToggleButton from '../components/ToggleButton';
+import MenuBar from '../components/MenuBar';
 import { nameChromeStorage } from '../utility/initEnv.js';
-import { deleteNode } from '../utility/manageMessage.js'
+import { deleteNode, deleteAllNode } from '../utility/manageMessage.js'
 import PrintButton from '../components/PrintButton';
 import ScreenShotButton from '../components/ScreenShotButton';
 
@@ -41,7 +31,7 @@ export default {
     }
   },
   components: {
-    PopupMenu, ToggleButton, PrintButton, ScreenShotButton
+    PopupMenu, PrintButton, ScreenShotButton, MenuBar
 
   },
   methods: {
@@ -53,12 +43,13 @@ export default {
       if (this.items.length > 1) {
         deleteNode(e);
       }
-    }
+    },
+
   },
 
   computed: {
     itemSize: function () {
-      return this.items.length;
+      return this.items.length || 0;
     }
   },
   mounted: function () {
@@ -109,9 +100,10 @@ function keepUpdatedSideMenu(items) {
 
 <style>
 .app-container {
-  font-family: Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Comfortaa", cursive, Georgia, Times, "Times New Roman", serif;
   width: 460px;
-  padding: 2rem 2.5rem;
+  margin-top: 4.3rem;
+  /* padding: 4rem 2.5rem 0.05rem; */
 }
 .icons {
   vertical-align: middle;
@@ -132,6 +124,9 @@ function keepUpdatedSideMenu(items) {
   transform: scale(1.1);
 }
 .shadow {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+}
+.center {
+  text-align: center;
 }
 </style>
