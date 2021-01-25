@@ -1,33 +1,31 @@
-import { resolve } from 'core-js/fn/promise';
 import { getStatus } from './manageStatus';
 
-const updateActive = async () => {
-    let result = await getStatus(element)
-}
-
-
 export function addListenerToPageContent(element) {
-    let { active, notes } = element;
-
-
+    getStatus(element);
+    let { notes } = element;
     document.body.addEventListener('mouseup', function launchMenu(e) {
+
+
         let textSelected = window.getSelection();
-        let updateActive = new Promise(
-            function (resolve, reject) {
-                getStatus(element);
-                setTimeout(resolve(active), 10);
-            }
-        )
-        updateActive.then(active => {
+        if (textSelected.toString().trim().length > 0) {
 
-            if (textSelected.toString().trim().length > 0) {
+            const checkStatus = new Promise(
+                function (resolve, reject) {
+                    getStatus(element);
+                    setTimeout(resolve, 10, element.active)
+                }
+            )
+            checkStatus.then(
+                function (data) {
+                    if (data) {
+                        document.body.removeEventListener("mouseup", launchMenu);
+                        sendNote(notes);
+                    }
+                }
+            )
+        }
 
-                document.body.removeEventListener("mouseup", launchMenu);
-                sendNote(notes);
-            }
-
-            else false;
-        })
+        else false;
 
         function sendNote(notes) {
             let website = document.location.href;

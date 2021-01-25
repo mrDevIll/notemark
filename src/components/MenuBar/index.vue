@@ -47,7 +47,7 @@ export default {
   left: 0;
   background-color: #ecf0f1;
   font-family: "Comfortaa", cursive, Georgia, Times, "Times New Roman", serif;
-  width: 460px;
+  width: 100%;
   padding: 0.5rem 2.5rem 0.05rem;
 }
 
@@ -60,7 +60,7 @@ export default {
   position: absolute;
   padding: 0 2rem;
   top: 0.5rem;
-  right: 3rem;
+  right: 3.5rem;
 }
 
 .sticky-icon {

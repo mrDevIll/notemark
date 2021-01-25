@@ -1,4 +1,3 @@
-import { resolve } from "core-js/fn/promise";
 import { appStatus } from "./initEnv";
 
 

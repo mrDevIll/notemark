@@ -33,14 +33,14 @@ export default {
 .print-icon {
   position: fixed;
   bottom: 0.3rem;
-  right: 0.5rem;
+  left: 0.7rem;
   padding: 0.5rem;
   color: white;
   background-color: #7c4dff;
   border: 1px #616161 solid;
   border-radius: 50%;
   font-size: large;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="delete-all-button-container">
         <button v-on:click="deleteAllItems" class="btn btn-lg"> delete all </button>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 import { deleteAllNode } from '../../utility/manageMessage.js';
 export default {
-    name: "deleteAllButton",
+    name: "DeleteAllButton",
     methods: {
         deleteAllItems: function () {
             deleteAllNode();
@@ -17,20 +17,24 @@ export default {
 }
 </script>
 <style scoped>
+.delete-all-button-container {
+  padding: 0.2rem;
+  margin-right: 0.5rem;
+  float: right;
+}
 .btn {
   color: #ffffff;
-  background-color: #f39c12;
+  background-color: #7c4dff;
   font-family: "Comfortaa", cursive;
   font-size: 1rem;
   font-weight: 700;
   text-transform: lowercase;
-  padding: 0.3rem 0.5rem;
-
+  padding: 0.2rem 0.3rem;
   border-radius: 15px;
-
+  opacity: 0.9;
   position: relative;
 }
 .btn:hover {
-  background-color: #9b59b6;
+  transform: scale(1.1);
 }
 </style>

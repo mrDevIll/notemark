@@ -4,24 +4,26 @@
     
     <div v-if="items.length" class="app-container" id="notemark-note">
                   <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item" v-on:deleteNote="deleteItem" />
-     <PrintButton />
-      
-     </div>
-     <div v-else class="app-container center">------select some text to add notes------</div>
      
-      <!-- <ScreenShotButton /> -->
-    
+         <footer-bar />    
+     </div>
+     <div v-else class="app-container center">
+       
+       ------enable and select some text to add notes------
+       
+       </div>
+   
        
   </div>
 </template>
 
 <script>
-import PopupMenu from './PopupMenu';
-import MenuBar from '../components/MenuBar';
 import { nameChromeStorage } from '../utility/initEnv.js';
 import { deleteNode, deleteAllNode } from '../utility/manageMessage.js'
-import PrintButton from '../components/PrintButton';
-import ScreenShotButton from '../components/ScreenShotButton';
+import PopupMenu from './PopupMenu';
+import MenuBar from '../components/MenuBar';
+import FooterBar from '../components/FooterBar'
+
 
 export default {
   name: "App",
@@ -31,7 +33,7 @@ export default {
     }
   },
   components: {
-    PopupMenu, PrintButton, ScreenShotButton, MenuBar
+    PopupMenu, MenuBar, FooterBar
 
   },
   methods: {
@@ -103,7 +105,7 @@ function keepUpdatedSideMenu(items) {
   font-family: "Comfortaa", cursive, Georgia, Times, "Times New Roman", serif;
   width: 460px;
   margin-top: 4.3rem;
-  /* padding: 4rem 2.5rem 0.05rem; */
+  margin-bottom: 5rem;
 }
 .icons {
   vertical-align: middle;

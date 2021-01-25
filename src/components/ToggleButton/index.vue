@@ -2,8 +2,8 @@
 <div class="toggle-container">
   
     <label for="toggle_button">
-        <span v-if="isActive" class="toggle__label">On</span>
-        <span v-if="! isActive" class="toggle__label">Off</span>
+        <span v-if="isActive" class="toggle__label">Enabled</span>
+        <span v-if="! isActive" class="toggle__label">Disabled</span>
 
         <input type="checkbox" id="toggle_button" v-model="checkedValue">
         <span class="toggle__switch"></span>
@@ -31,6 +31,7 @@ export default {
       },
       set(newValue) {
         setStatus(newValue);
+        refreshTab();
         this.currentState.active = newValue;
       }
     }
@@ -42,6 +43,11 @@ export default {
 
 }
 
+function refreshTab() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
+  });
+}
 
 
 </script>
