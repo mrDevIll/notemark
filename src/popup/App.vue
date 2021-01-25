@@ -78,9 +78,7 @@ function populateSideMenu(items) {
   });
 }
 
-function updateBadge(text) {
-  chrome.browserAction.setBadgeText(text);
-}
+
 
 function keepUpdatedSideMenu(items) {
   const uploadedItems = items;

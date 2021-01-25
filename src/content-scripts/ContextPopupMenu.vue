@@ -6,7 +6,7 @@
         <font-awesome-icon :icon="copyIcon" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-copy cliccable" v-on:click="copyMessage" title="copy"/>
         <font-awesome-icon :icon="plusCircle" class="notemark-mini-menu-selected-icon notemark-mini-menu-selected-icon-plus cliccable" v-on:click="takeNote" title="add to your notes"/> 
     <span class="">
-       <input type="node" name="node" v-model="noteName" class="notemark-mini-menu-selected-noteInput"/>
+       <input type="node" name="node" v-model="noteName" class="notemark-mini-menu-selected-noteInput" onclick="this.select();" />
     </span>
       
     </div>
@@ -15,7 +15,7 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faPlusCircle, faTimesCircle, faCopy } from '@fortawesome/free-solid-svg-icons';
-import { insertMessage } from '../utility/manageMessage.js'
+import { insertMessage, updateBadge } from '../utility/manageMessage.js'
 
 
 export default {
@@ -26,8 +26,7 @@ export default {
       plusCircle: faPlusCircle,
       copyIcon: faCopy,
       timesCircle: faTimesCircle,
-      noteName: "note"
-      // TODO: add a compute that selects the last element in the note and updates noteName
+      noteName: "insert note"
     }
   },
 
@@ -35,11 +34,11 @@ export default {
     closeMenu() {
       this.$emit("menuOff");
     },
+
     copyMessage() {
       this.$emit("menuOff");
       try {
         navigator.clipboard.writeText(this.note.text);
-
         this.$emit("menuOff");
       } catch (e) {
         console.log("error copying the data: " + e)
@@ -89,7 +88,7 @@ export default {
 }
 .notemark-mini-menu-selected-noteInput {
   padding: 0 0.2rem;
-  width: 6rem;
+  width: 8rem;
 }
 .close-icon {
   color: red;

@@ -22,6 +22,8 @@
 import ToggleButton from '../ToggleButton';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faStickyNote, faClipboard } from '@fortawesome/free-solid-svg-icons';
+
+
 export default {
     name: "MenuBar",
     props: ["itemSize"],
@@ -31,6 +33,7 @@ export default {
             clipIcon: faClipboard
         }
     },
+
 
     components: {
         ToggleButton, FontAwesomeIcon
