@@ -25,16 +25,6 @@ Upload the folder "dist" created from yarn run serve.
 
 
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
 ### Compiles and minifies for production
 ```
 yarn build
