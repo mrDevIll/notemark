@@ -25,6 +25,12 @@ Upload the folder "dist" created from yarn run serve.
 
 
 
+### video that shows how the web-extension works
+
+<a href="https://m.youtube.com/watch?v=HvEPM_lGWRs"> notemark youtube video </a>
+
+
+
 ### Compiles and minifies for production
 ```
 yarn build
