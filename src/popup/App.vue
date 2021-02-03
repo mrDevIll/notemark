@@ -3,7 +3,7 @@
     <MenuBar :itemSize="itemSize"/>
     
     <div v-if="items.length" class="app-container" id="notemark-note">
-                  <PopupMenu v-for="(item,key) in items" :key="key"  :nodes="item" v-on:deleteNote="deleteItem" />
+                  <Clipboard v-for="(item,key) in items" :key="key"  :nodes="item" v-on:deleteNote="deleteItem" />
      
          <footer-bar />    
      </div>
@@ -20,7 +20,7 @@
 <script>
 import { nameChromeStorage } from '../utility/initEnv.js';
 import { deleteNode, deleteAllNode } from '../utility/manageMessage.js'
-import PopupMenu from './PopupMenu';
+import Clipboard from './Clipboard';
 import MenuBar from '../components/MenuBar';
 import FooterBar from '../components/FooterBar'
 
@@ -33,7 +33,7 @@ export default {
     }
   },
   components: {
-    PopupMenu, MenuBar, FooterBar
+    Clipboard, MenuBar, FooterBar
 
   },
   methods: {
@@ -78,8 +78,6 @@ function populateSideMenu(items) {
   });
 }
 
-
-
 function keepUpdatedSideMenu(items) {
   const uploadedItems = items;
   chrome.storage.onChanged.addListener(function (changes) {
@@ -100,7 +98,7 @@ function keepUpdatedSideMenu(items) {
 
 <style>
 .app-container {
-  font-family: "Comfortaa", cursive, Georgia, Times, "Times New Roman", serif;
+  font-family: Georgia, Times, serif;
   width: 460px;
   margin-top: 4.3rem;
   margin-bottom: 5rem;

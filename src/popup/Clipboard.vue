@@ -8,7 +8,7 @@
             
             </div>
             
-            <ChildNote :children="note" :father="key" />
+            <Note :children="note" :father="key" />
         </div>
 
 
@@ -18,11 +18,11 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import ChildNote from './ChildNote';
+import Note from './Note';
 
 export default {
-  name: "PopupMenu",
-  components: { ChildNote, FontAwesomeIcon },
+  name: "Clipboard",
+  components: { Note, FontAwesomeIcon },
   props: ["nodes", "k"],
   data: function () {
     return {

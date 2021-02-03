@@ -1,13 +1,15 @@
 import Vue from 'vue';
-import ContextPopup from './ContextPopup.vue'
-import { initExtension } from '../utility/initEnv.js';
+import Menu from './Menu.vue'
+import { initExtension, idVueApp } from '../utility/initEnv.js';
+
+
 
 Vue.config.productionTip = false
 
 initExtension()
 new Vue({
-    render: h => h(ContextPopup),
-}).$mount('#notemark-container')
+    render: h => h(Menu),
+}).$mount(`#${idVueApp}`)
 
 
 

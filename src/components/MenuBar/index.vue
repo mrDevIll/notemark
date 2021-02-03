@@ -6,7 +6,7 @@
         <div class="menu-bar-title">
             <h2>
                 Notemarks
-                <font-awesome-icon :icon="clipIcon" class="icons clip-icon" />
+                <font-awesome-icon :icon="clipIcon" class="icons clip-icon " />
             </h2>
         </div>
         <div class="menu-bar-elements">
@@ -49,12 +49,14 @@ export default {
   top: 0;
   left: 0;
   background-color: #ecf0f1;
-  font-family: "Comfortaa", cursive, Georgia, Times, "Times New Roman", serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   width: 100%;
   padding: 0.5rem 2.5rem 0.05rem;
 }
 
 .menu-bar-title {
+  font-family: "Comfortaa", cursive, Georgia, Times, "Times New Roman", serif;
+  color: midnightblue;
   margin-left: -3rem;
   text-align: center;
   padding: 0 0.3rem;

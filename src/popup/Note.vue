@@ -22,7 +22,7 @@ import { deleteNodeChild } from '../utility/manageMessage.js'
 
 
 export default {
-  name: "Child-note",
+  name: "Note",
   props: ["children", "father"],
   data: function () {
     return {
@@ -58,6 +58,9 @@ export default {
   padding: 0.3rem 0;
   font-size: 0.8rem;
   color: #757575;
+}
+a:visited {
+  color: #7c4dff;
 }
 </style>
 

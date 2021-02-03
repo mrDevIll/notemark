@@ -25,7 +25,7 @@ export default {
 .btn {
   color: #ffffff;
   background-color: #7c4dff;
-  font-family: Arial, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 1rem;
   padding: 0.2rem 0.3rem;
   border-radius: 3px;

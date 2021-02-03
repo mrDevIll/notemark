@@ -20,7 +20,7 @@ import { insertMessage, updateBadge } from '../utility/manageMessage.js'
 import { addCssSelectors } from '../utility/cssManager.js';
 
 export default {
-  name: "ContextPopupMenu",
+  name: "MenuItems",
   props: ['note', 'states'],
   data: function () {
     return {

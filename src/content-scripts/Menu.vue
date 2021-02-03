@@ -3,9 +3,7 @@
 <div >
         
     <div v-for="item in items.notes" :key="item.id" >
-        <!-- TODO: add a flag to stop new pop up once the menu is active -->
-        <ContextPopupMenu :note="item" v-on:menuOff="updateItems" /> 
-
+        <MenuItems :note="item" v-on:menuOff="updateItems" /> 
     </div>
         
     
@@ -15,13 +13,13 @@
 
 <script>
 
-import ContextPopupMenu from './ContextPopupMenu';
+import MenuItems from './MenuItems';
 import { nameChromeStorage } from '../utility/initEnv.js';
 import { addListenerToPageContent } from '../utility/listener.js';
 import { getStatus } from '../utility/manageStatus';
 
 export default {
-    name: "ContextPopup",
+    name: "Menu",
     data() {
         return {
             items: { active: true, notes: [] },
@@ -29,12 +27,8 @@ export default {
 
         }
     },
-    computed: {
-
-    },
-
     components: {
-        ContextPopupMenu
+        MenuItems
     },
     methods: {
         updateItems: function (e) {

@@ -25,7 +25,7 @@ export default {
   bottom: 0;
   left: 0;
   background-color: #ecf0f1;
-  font-family: "Comfortaa", cursive, Georgia, Times, "Times New Roman", serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   width: 100%;
   padding-top: 0.3rem;
   padding-right: 0.5rem;
