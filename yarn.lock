@@ -3020,11 +3020,6 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-data-tree@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/data-tree/-/data-tree-1.2.4.tgz#1cf30a3886208dca55e0ecb0fed232edaf5fde54"
-  integrity sha1-HPMKOIYgjcpV4Oyw/tIy7a9f3lQ=
-
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
@@ -8279,11 +8274,6 @@ vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
-
-vuex-webextensions@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/vuex-webextensions/-/vuex-webextensions-1.3.0.tgz#52a48490f61d65b0042f191201e848a47408b136"
-  integrity sha512-ij14iDGKUb9z3nLk7E2Z3Tbhm6g8MUCVoeKNRs6xwnaZEuOyY5B8TmIeyZa/QI2zJvNebQZrrEsTp6GbnRwGpw==
 
 watchpack-chokidar2@^2.0.1:
   version "2.0.1"

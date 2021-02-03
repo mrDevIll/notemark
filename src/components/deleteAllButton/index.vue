@@ -25,8 +25,7 @@ export default {
 .btn {
   color: #ffffff;
   background-color: #7c4dff;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 1rem;
   padding: 0.2rem 0.3rem;
   border-radius: 3px;

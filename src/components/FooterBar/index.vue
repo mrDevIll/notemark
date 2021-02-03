@@ -7,7 +7,7 @@
 </template>
 <script>
 import PrintButton from '../PrintButton';
-import DeleteAllButton from '../DeleteAllButton';
+import DeleteAllButton from '../deleteAllButton';
 
 export default {
     name: "FooterBar",
